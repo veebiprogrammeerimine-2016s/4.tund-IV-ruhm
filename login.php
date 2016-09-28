@@ -52,6 +52,15 @@
 			
 		}
 		
+		/* GENDER */
+		
+		if (!isset ($_POST["gender"])) {
+			
+			//error
+		}else {
+			// annad väärtuse
+		}
+		
 	}
 	
 	//vaikimisi väärtus
@@ -100,6 +109,7 @@
 		login($_POST["loginEmail"], $_POST["loginPassword"]);
 		
 	}
+	
 	
 	
 
