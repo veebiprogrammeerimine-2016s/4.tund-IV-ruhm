@@ -1,5 +1,10 @@
 <?php 
 	
+	// see fail peab olema siis seotud kõigiga kus
+	// tahame sessiooni kasutada
+	// saab kasutada nüüd $_SESSION muutujat
+	session_start();
+	
 	$database = "if16_romil";
 	// functions.php
 	
@@ -50,6 +55,12 @@
 			
 			if ($hash == $passwordFromDb) {
 				echo "Kasutaja $id logis sisse";
+				
+				$_SESSION["userId"] = $id;
+				$_SESSION["userEmail"] = $emailFromDb;
+				
+				header("Location: data.php");
+				
 			} else {
 				$notice = "parool vale";
 			}
