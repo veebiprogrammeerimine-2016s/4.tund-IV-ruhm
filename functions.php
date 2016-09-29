@@ -9,9 +9,9 @@
 		
 		$stmt = $mysqli->prepare("INSERT INTO user_sample (email, password) VALUE (?, ?)");
 		echo $mysqli->error;
-
+		
 		$stmt->bind_param("ss", $email, $password);
-
+		
 		if ( $stmt->execute() ) {
 			echo "õnnestus";
 		} else {
@@ -21,6 +21,8 @@
 	}
 	
 	function login($email, $password) {
+		
+		$notice = "";
 		
 		$mysqli = new mysqli($GLOBALS["serverHost"], $GLOBALS["serverUsername"], $GLOBALS["serverPassword"], $GLOBALS["database"]);
 		
@@ -49,15 +51,17 @@
 			if ($hash == $passwordFromDb) {
 				echo "Kasutaja $id logis sisse";
 			} else {
-				echo "parool vale";
+				$notice = "parool vale";
 			}
 			
 			
 		} else {
 			
 			//ei olnud ühtegi rida
-			echo "Sellise emailiga ".$email." kasutajat ei ole olemas";
+			$notice = "Sellise emailiga ".$email." kasutajat ei ole olemas";
 		}
+		
+		return $notice;
 		
 		
 	}
